@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 
 import { map } from 'rxjs/operators';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
@@ -98,7 +98,12 @@ export class UsuarioService {
       .pipe(
         map( (resp: any) => {
 
-        swal('Usuario creado', usuario.email, 'success');
+        Swal.fire({
+          title: 'Usuario creado',
+          text: usuario.email,
+          icon: 'success'
+        });
+
         return resp.usuario;
       }));
   }
@@ -116,7 +121,11 @@ export class UsuarioService {
                   this.guardarDatosStorage(usuarioDB._id, this.token, usuarioDB);
                 }
 
-                swal('Usuario actualizado', usuario.nombre, 'success');
+                Swal.fire({
+                  title: 'Usuario actualizado',
+                  text: usuario.nombre,
+                  icon: 'success'
+                });
 
                 return true;
               }));
@@ -128,7 +137,11 @@ export class UsuarioService {
         .then( (resp: any) => {
 
           this.usuario.img = resp.usuario.img;
-          swal(' Imagen Actualizada ', this.usuario.nombre, 'success');
+          Swal.fire({
+            title: 'Imagen Actualizada',
+            text: this.usuario.nombre,
+            icon: 'success'
+          });
 
           this.guardarDatosStorage(id, this.token, this.usuario);
         })
@@ -157,7 +170,11 @@ export class UsuarioService {
     return this.http.delete(url)
           .pipe(map( resp  => {
 
-            swal('Usuario borrado', 'El usuario ha sido eliminado correctamente', 'success');
+            Swal.fire({
+              title: 'Usuario borrado',
+              text: 'El usuario ha sido eliminado correctamente',
+              icon: 'success'
+            });
             return true;
           }));
   }
