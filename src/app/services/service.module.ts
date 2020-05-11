@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
 import { HospitalService } from './hospital/hospital.service';
 import { MedicoService } from './medicos/medico.service';
+import { VerificaTokenGuard } from './guards/verifica-token.guard';
 
 @NgModule({
   declarations: [],
@@ -31,7 +32,8 @@ import { MedicoService } from './medicos/medico.service';
     AdminGuard,
     ModalUploadService,
     HospitalService,
-    MedicoService
+    MedicoService,
+    VerificaTokenGuard
   ]
 })
 export class ServiceModule { }
